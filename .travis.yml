@@ -8,7 +8,7 @@ install:
   - pip install coveralls
   - pip install coverage
 script:
-  - python run.py > /dev/null & nosetests --with-coverage
+  - python run.py > /dev/null & nosetests --with-coverage --cover-package=app
 
 after_success:
   - coveralls
