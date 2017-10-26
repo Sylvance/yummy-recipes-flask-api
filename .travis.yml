@@ -5,3 +5,5 @@ python:
 
 install:
   - pip install -r requirements.txt
+script: 
+  - nosetests --with-xunit --with-xcoverage --cover-package=app --cover-erase tests
