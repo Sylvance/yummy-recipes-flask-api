@@ -7,6 +7,7 @@ Flask==0.12.2
 Flask-Bcrypt==0.7.1
 Flask-Cors==3.0.3
 Flask-SQLAlchemy==2.3.2
+Flask-Testing==0.6.2
 isort==4.2.15
 itsdangerous==0.24
 Jinja2==2.9.6
