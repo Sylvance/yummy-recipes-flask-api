@@ -5,5 +5,10 @@ python:
 
 install:
   - pip install -r requirements.txt
-script: 
-  - nosetests --with-xunit --with-xcoverage --cover-package=app --cover-erase tests
+  - pip install coveralls
+  - pip install coverage
+script:
+  - python run.py > /dev/null & nosetests --with-coverage
+
+after_success:
+  - coveralls
