@@ -17,7 +17,7 @@ install:
 
 before_script:
   - psql -c 'create database yummyrecipesdb;' -U postgres
-  - python manage.py db upgrade
+  - python manage.py DB upgrade
 
 script:
   - python run.py > /dev/null & nosetests --with-coverage --cover-package=app
