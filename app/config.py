@@ -4,6 +4,7 @@ import os
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 POSTGRES_LOCAL_BASE = 'postgresql://postgres:starwars@localhost/'
 DATABASE_NAME = 'yummyrecipesdb'
+DATABASE_TEST_NAME = 'yummyrecipestestdb'
 
 
 class BaseConfig:
@@ -32,7 +33,7 @@ class TestingConfig(BaseConfig):
     """ Testing application configuration """
     DEBUG = True
     TESTING = True
-    POSTFIX = POSTGRES_LOCAL_BASE + DATABASE_NAME + "_test"
+    POSTFIX = POSTGRES_LOCAL_BASE + DATABASE_TEST_NAME
     SQLALCHEMY_DATABASE_URI = os.getenv('DATABASE_URL_TEST', POSTFIX)
     BCRYPT_HASH_PREFIX = 4
     TOKEN_EXPIRY_DAYS = 0

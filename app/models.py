@@ -11,6 +11,7 @@ class User(DB.Model):
     id = DB.Column(DB.Integer, primary_key=True, autoincrement=True)
     email = DB.Column(DB.String(255), unique=True, nullable=False)
     password = DB.Column(DB.String(255), nullable=False)
+    bio = DB.Column(DB.String(255), nullable=False)
     joinedon = DB.Column(DB.DateTime, nullable=False)
     categories = DB.relationship('Category', backref='category', lazy='dynamic')
 
@@ -18,6 +19,7 @@ class User(DB.Model):
         self.email = email
         self.password = BCRYPT.generate_password_hash(password, APP.config.get('BCRYPT_HASH_PREFIX')) \
             .decode('utf-8')
+        self.bio = "This is your bio. Describe your culinary prowess or preference."
         self.joinedon = datetime.datetime.now()
 
     def save(self):
@@ -103,7 +105,7 @@ class BannedToken(DB.Model):
 
 class Category(DB.Model):
     """ Class to represent the Category model """
-    __tablename__ = 'category'
+    __tablename__ = 'categories'
 
     id = DB.Column(DB.Integer, primary_key=True, autoincrement=True)
     name = DB.Column(DB.String(255), nullable=False)
@@ -146,7 +148,7 @@ class Category(DB.Model):
 class Recipe(DB.Model):
     """ Recipe model class """
 
-    __tablename__ = 'recipe'
+    __tablename__ = 'recipes'
 
     id = DB.Column(DB.Integer, primary_key=True, autoincrement=True)
     name = DB.Column(DB.String(255), nullable=False)
