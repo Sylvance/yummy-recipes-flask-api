@@ -3,10 +3,22 @@ language: python
 python:
   - "3.6"
 
+service:
+  - postgresql
+
+before_install:
+  - export DATABASE_URL_TEST="postgresql://postgres@localhost/yummyrecipesdb"
+  - export APP_SETTINGS="app.config.TestingConfig"
+
 install:
   - pip install -r requirements.txt
   - pip install coveralls
   - pip install coverage
+
+before_script:
+  - psql -c 'create database yummyrecipesdb;' -U postgres
+  - python manage.py db upgrade
+
 script:
   - python run.py > /dev/null & nosetests --with-coverage --cover-package=app
 
