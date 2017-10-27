@@ -13,7 +13,7 @@ class User(DB.Model):
     password = DB.Column(DB.String(255), nullable=False)
     bio = DB.Column(DB.String(255), nullable=False)
     joinedon = DB.Column(DB.DateTime, nullable=False)
-    categories = DB.relationship('Category', backref='category', lazy='dynamic')
+    categories = DB.relationship('Category', backref='categories', lazy='dynamic')
 
     def __init__(self, email, password):
         self.email = email
@@ -153,7 +153,7 @@ class Recipe(DB.Model):
     id = DB.Column(DB.Integer, primary_key=True, autoincrement=True)
     name = DB.Column(DB.String(255), nullable=False)
     description = DB.Column(DB.Text, nullable=True)
-    category_id = DB.Column(DB.Integer, DB.ForeignKey('category.id'))
+    category_id = DB.Column(DB.Integer, DB.ForeignKey('categories.id'))
     create_at = DB.Column(DB.DateTime, nullable=False)
     modified_at = DB.Column(DB.DateTime, nullable=False)
 
