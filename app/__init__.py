@@ -25,3 +25,8 @@ DB = SQLAlchemy(APP)
 
 
 from app import views
+
+# Register blue prints
+from app.controllers.auth import authentication
+
+APP.register_blueprint(authentication)
