@@ -20,7 +20,8 @@ COV = coverage.coverage(
     branch=True,
     include='app/*',
     omit=[
-        'app/controllers/__init__.py'
+        'app/controllers/__init__.py',
+        'app/helpers/__init__.py'
     ]
 )
 COV.start()
@@ -32,7 +33,7 @@ def test():
     Run tests without coverage
     :return:
     """
-    tests = unittest.TestLoader().discover('tests', pattern='test*.py')
+    tests = unittest.TestLoader().discover('tests')
     result = unittest.TextTestRunner(verbosity=2).run(tests)
     if result.wasSuccessful():
         return 0
