@@ -31,7 +31,7 @@ class TestTestingConfig(TestCase):
 
     def create_app(self):
         """ Create an instance of the APP with the testing configuration :return: """
-        APP.config.from_object('APP.config.TestingConfig')
+        APP.config.from_object('app.config.TestingConfig')
         return APP
 
     def test_app_in_testing(self):

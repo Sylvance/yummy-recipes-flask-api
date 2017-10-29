@@ -3,6 +3,7 @@ from flask_script import Manager
 from flask_migrate import Migrate, MigrateCommand
 from app import APP, DB
 import os
+import unittest
 import coverage
 
 # Initializing the manager
@@ -24,6 +25,18 @@ COV = coverage.coverage(
 )
 COV.start()
 
+# Add test command
+@MANAGER.command
+def test():
+    """
+    Run tests without coverage
+    :return:
+    """
+    tests = unittest.TestLoader().discover('tests', pattern='test*.py')
+    result = unittest.TextTestRunner(verbosity=2).run(tests)
+    if result.wasSuccessful():
+        return 0
+    return 1
 
 if __name__ == '__main__':
     MANAGER.run()
